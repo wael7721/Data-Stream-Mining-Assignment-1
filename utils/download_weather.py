@@ -123,11 +123,15 @@ def download_weather(
 
     paths: dict[str, Path] = {}
     for city in cities:
-        
+        # 1. Define the path for the current city first
+            # (Adjust the filename structure to match your project's naming convention)
+        path = os.path.join(data_dir, f"{city}.csv") 
+
+    # 2. Then check if it exists
         if os.path.exists(path):
             print(f"[{city}] Data already exists at {path}. Skipping download.")
             paths[city] = path
-            continue
+            continue # Skip the download steps for this city
     
         lat, lon = CITY_COORDS[city]
         print(f"[{city}] downloading {start} -> {end} (lat={lat}, lon={lon}, tz={timezone})")
